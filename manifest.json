@@ -1,0 +1,23 @@
+{
+  "name": "Download Blinks",
+  "icons": { "16": "icon16.png",
+           "48": "icon48.png",
+          "128": "icon128.png" },
+  "action": {},
+  "manifest_version": 3,
+  "version": "0.1",
+  "description": "Extracts Blinks and download a single HTML file",
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+   "content_scripts": [
+   {
+     "matches": ["https://*.blinkist.com/*"],
+     "js": ["jspdf.umd.min.js", "purify.min.js", "html2canvas.min.js", "html2pdf.bundle.min.js"]
+   }
+ ]
+}
