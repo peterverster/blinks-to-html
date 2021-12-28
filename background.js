@@ -17,13 +17,15 @@ function downloadBook() {
     
     // download(final, slug + '.html', 'text/plain');
     // Default export is a4 paper, portrait, using millimeters for units
+
+    window.jsPDF = window.jspdf.jsPDF
+    var pdf = new window.jsPDF();
     
-    var pdf = new jsPDF();
-    
-    pdf.fromHTML(final, 15, 10, { 
-        'width': 170
+    pdf.html(final, {
+        callback : function (pdf) {
+            pdf.save(slug + '.pdf');
+        }
     });
-    pdf.save(slug + '.pdf');
 }
 
 
