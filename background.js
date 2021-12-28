@@ -12,27 +12,18 @@ function downloadBook() {
         a.click();
     }
 
-    const data = document.querySelector("body > div.page > main > div.reader__container > div.reader__container__right > article").outerHTML;
-
-
-    let final = template.replace("{{article}}", data)
-    download(final, slug + '.html', 'text/plain');
-
+    let dataElement = document.querySelector("body > div.page > main > div.reader__container > div.reader__container__right > article").outerHTML;
+    let final = template.replace("{{article}}", dataElement);
+    
+    // download(final, slug + '.html', 'text/plain');
     // Default export is a4 paper, portrait, using millimeters for units
-
-    // window.jsPDF = window.jspdf.jsPDF;
-    // const doc = new window.jsPDF();
-    //
-    // doc.html(data, {
-    //     callback: function (doc) {
-    //         doc.save(slug + ".pdf");
-    //     },
-    //     x: 10,
-    //     y: 10
-    // });
-
-    // let worker = html2pdf().from(final).save(slug + ".pdf");
-
+    
+    var pdf = new jsPDF();
+    
+    pdf.fromHTML(final, 15, 10, { 
+        'width': 170
+    });
+    pdf.save(slug + '.pdf');
 }
 
 
